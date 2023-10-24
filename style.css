@@ -137,6 +137,7 @@ html, body {
 
     .header__list {
         display: block;
+        margin-top: 80px;
     }
 
     .header__list li {
