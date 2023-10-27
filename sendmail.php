@@ -76,10 +76,10 @@ $mail->Username = 'Логин';
 $mail->Password = 'Пароль';
  
 // От кого
-$mail->setFrom('didarhanova.madina@mail.ru', 'Madina');		
+$mail->setFrom('didarkhanova.madina@gmail.com', 'Madina');		
  
 // Кому
-$mail->addAddress('didarhanova.madina@mail.ru', 'Madina');
+$mail->addAddress('didarkhanova.madina@gmail.com', 'Madina');
  
 // Тема письма
 $mail->Subject = $subject;
