@@ -70,16 +70,16 @@ $mail->isSMTP();
 $mail->SMTPAuth = true;
 $mail->SMTPDebug = 0;
  
-$mail->Host = 'ssl://smtp.gmail.com';
-$mail->Port = 465;
+$mail->Host = 'smtp.yandex.ru';
+$mail->Port = 587;
 $mail->Username = 'Логин';
 $mail->Password = 'Пароль';
  
 // От кого
-$mail->setFrom('didarhanova.madina@mail.ru', 'Madina');		
+$mail->setFrom('madiadidarhanova@yandex.ru', 'Madina');		
  
 // Кому
-$mail->addAddress('didarhanova.madina@mail.ru', 'Madina');
+$mail->addAddress('madiadidarhanova@yandex.ru', 'Madina');
  
 // Тема письма
 $mail->Subject = $subject;
@@ -88,8 +88,6 @@ $mail->Subject = $subject;
 $body = '<p><strong>«Hello, world!» </strong></p>';
 $mail->msgHTML($body);
  
-// Приложение
-$mail->addAttachment(__DIR__ . '/image.jpg');
  
 $mail->send();
 ?>
