@@ -7,7 +7,7 @@ require 'PHPMailer/src/PHPMailer.php';
 
 $mail = new PHPMailer(true);
 $mail->CharSet = 'UTF-8';
-$mail->setLanguage('ru',  'phpmailer/language/');
+$mail->setLanguage('ru',  'PHPMailer/language/');
 $mail->isHTML(true);
 
 $mail->setFrom('didarhanova.madina@mail.ru', 'Madina'); //от кого письма
@@ -43,7 +43,7 @@ if (!$mail->send()) {
 }
 
 $response = ['message' => $message];
-header('Content-type': application/json);
+header('Content-type: application/json');
 echo json_encode($response);
 
 ?>
