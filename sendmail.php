@@ -76,11 +76,12 @@ $mail->Username = 'Логин';
 $mail->Password = 'Пароль';
  
 // От кого
-$mail->setFrom('madiadidarhanova@yandex.ru', 'Madina');		
+
+$mail->setFrom('madinadidarhanova@yandex.ru', 'Madina');		
  
 // Кому
-$mail->addAddress('madiadidarhanova@yandex.ru', 'Madina');
- 
+$mail->addAddress('madinadidarhanova@yandex.ru', 'Madina');
+
 // Тема письма
 $mail->Subject = $subject;
  
