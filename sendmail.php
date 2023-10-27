@@ -10,9 +10,9 @@ $mail->CharSet = 'UTF-8';
 $mail->setLanguage('ru',  'PHPMailer/language/');
 $mail->isHTML(true);
 
-$mail->Host = 'ssl://smtp.mail.ru';
+$mail->Host = 'ssl://smtp.yandex.ru';
 $mail->Port = 465;
-$mail->Username = 'didarhanova.madina@mail.ru';
+$mail->Username = 'madinadidarhanova@yandex.ru';
 $mail->Password = 'secret';
 
 $mail->setFrom('didarhanova.madina@mail.ru', 'Madina'); //от кого письма
