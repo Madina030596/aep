@@ -10,6 +10,11 @@ $mail->CharSet = 'UTF-8';
 $mail->setLanguage('ru',  'PHPMailer/language/');
 $mail->isHTML(true);
 
+$mail->Host = 'ssl://smtp.mail.ru';
+$mail->Port = 465;
+$mail->Username = 'didarhanova.madina@mail.ru';
+$mail->Password = 'secret';
+
 $mail->setFrom('didarhanova.madina@mail.ru', 'Madina'); //от кого письма
 $mail->addAddress('didarkhanova.madina@gmail.com', 'Joe User'); //кому отправить
 $mail->Subject = 'Here is the subject';  //тема письма
