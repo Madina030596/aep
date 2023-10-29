@@ -70,75 +70,89 @@ for (let anchor of anchors){
     })
 }
 
-//форма отправки
-document.addEventListener('DOMContentLoaded', ()=> { //проверка на загруженность документа
-    const form = document.querySelector('#form');
+//проверка формы
+const reqInputs = document.querySelectorAll('._req');
+const emailInput = document.querySelector('._email');
+const patternEmail = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+const submitBtn = document.querySelector('#submitBtn');
 
-    form.addEventListener('submit', formSend); //при отправке формы мы должны перейти в функцию formSend
+function validateEmail () {
+    if(!emailInput.value.match(patternEmail)) {
+        emailInput.classList.add('_error')
+    } else {
+        emailInput.classList.remove('_error')
+    }
+}
 
-    async function formSend(e) {
-        e.preventDefault(); //запрещаем стандартную отправку формы, то есть при нажатии на кнопку ничего не будет происходить
-
-        let error = formValidate(form);
-
-        let formData = new FormData(form); //вытягиваем все данные полей
-
-        if(error === 0) {
-            form.classList.add('_sending');
-            let response = await fetch('sendmail.php', { //ждем отправки методом post данных (formData) в файл 'sendmail.php'
-                method: 'POST',
-                body: formData
-            })
-            if(response.ok) {
-                let result = await response.json();
-                alert(result.message);
-                formPreview.innerHTML = '';
-                form.reset();
-                form.classList.remove('_sending');
-            } else {
-                alert('Ошибка');
-                form.classList.remove('_sending');
-            }
-        } else {
-            alert('Заполните обязательные поля');
+function checkValidity() {
+    reqInputs.forEach(item => {
+        if(!item.checkValidity()) {
+            item.classList.add('_error')
+        } else  {
+            item.classList.remove('_error')
         }
-    }
+    })
+    validateEmail()
+}
 
-    function formValidate(form) {
-        let error = 0;
-        let formReq = document.querySelectorAll('._req'); //обязательное поле
+document.querySelectorAll('.form__input').forEach(item => {
+    item.addEventListener('keyup', checkValidity)
+})
 
-        for(let index = 0; index < formReq.length; index++) {
-            const input = formReq[index];
-            formRemoveError(input);
+function resetForm() {
+    document.querySelector('#form').reset();
+}
 
-            if(input.classList.contains('_email')) {
-                if(emailTest(input)) {
-                    formAddError(input);
-                    error++;
-                }
-            }else {
-                if(input.value === '') {
-                    formAddError(input);
-                    error++;
-                }
-            }
-        }
-        return error;
-    }
+submitBtn.addEventListener('click', (e)=> {
+    window.addEventListener('unload', resetForm)
+})
 
-    function formAddError(input) {
-        input.parentElement.classList.add('_error'); //родительскому элементу класс добавляем
-        input.classList.add('_error');
-    }
-
-    function formRemoveError(input) {
-        input.parentElement.classList.remove('_error');
-        input.classList.remove('_error');
-    }
-
-    //функция теста email
-    function emailTest(input) {  //регулярным выражением проверяем соответствие (есть ли @ . и тд)
-        return !/^([A-Za-z0-9_\-\.])+\@([A-Za-z0-9_\-\.])+\.([A-Za-z]{2,4})$/.test(input.value);
+document.addEventListener('click', (e) => {
+    if(e.target !== submitBtn) {
+        reqInputs.forEach(item => item.classList.remove('_error'))
+    } else {
+        checkValidity()
     }
 })
+
+
+
+//отправка формы
+const form = document.querySelector('#form');
+
+async function handleSubmit(event) {
+    event.preventDefault();
+    let data = new FormData(event.target);
+    fetch(event.target.action, {
+        method: form.method,
+        body: data,
+        headers: {
+            'Accept': 'application/json'
+        }
+    }).then(response => {
+        if (response.ok) {
+            Swal.fire({
+                text:'Форма успешно отправлена',
+                confirmButtonColor: '#c6a085'
+            })
+            form.reset()
+        } else {
+            Swal.fire({
+                icon: 'error',
+                title: 'Ошибка',
+                text: 'Форма не отправлена!',
+                confirmButtonColor: '#c6a085'
+            })
+        }
+    }).catch(error => {
+        Swal.fire({
+            icon: 'error',
+            title: 'Ошибка',
+            text: 'Форма не отправлена!',
+            confirmButtonColor: '#c6a085'
+        })
+    });
+}
+form.addEventListener("submit", handleSubmit)
+
+
