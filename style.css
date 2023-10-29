@@ -490,8 +490,16 @@ textarea.form__input {
         font-size: 2rem;
     }
 
+    .form__item {
+        width: 80%;
+        margin: 0 auto;
+        margin-bottom: 20px
+    }
+
     .form__button {
         font-size: 0.9rem;
+        width: 80%;
+        margin: 0 auto;
     }
 
 }
