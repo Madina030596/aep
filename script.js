@@ -99,14 +99,6 @@ document.querySelectorAll('.form__input').forEach(item => {
     item.addEventListener('keyup', checkValidity)
 })
 
-function resetForm() {
-    document.querySelector('#form').reset();
-}
-
-submitBtn.addEventListener('click', (e)=> {
-    window.addEventListener('unload', resetForm)
-})
-
 document.addEventListener('click', (e) => {
     if(e.target !== submitBtn) {
         reqInputs.forEach(item => item.classList.remove('_error'))
@@ -114,8 +106,6 @@ document.addEventListener('click', (e) => {
         checkValidity()
     }
 })
-
-
 
 //отправка формы
 const form = document.querySelector('#form');

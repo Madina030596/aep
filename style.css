@@ -159,7 +159,7 @@ li:last-child {
     color: white;
 }
 
-/**/
+/*Обо мне*/
 .wrapper {
     margin-top: 100px;
 }
@@ -190,7 +190,6 @@ li:last-child {
     background-repeat: no-repeat;
     background-position: center top;
 }
-
 
 .block {
     padding: 50px 0;
@@ -253,6 +252,34 @@ li:last-child {
 .slider-wrapper {
     max-width: 70%;
     margin: 0 auto;
+}
+
+/*контакты*/
+.box {
+    background-color: #c6a085;
+    padding: 50px 0;
+}
+
+.flex-row {
+    display: flex;
+    justify-content: center;
+}
+
+.flex-row a {
+    margin-right: 30px;
+}
+
+.flex-row svg {
+    width: 70px;
+}
+
+/* svg path {
+    fill: #f2eade;
+    stroke: #969676;
+} */
+
+.flex-row a:last-child {
+    margin-right: 0;
 }
 
 /*записаться*/
@@ -465,11 +492,14 @@ textarea.form__input {
 @media all and (max-width: 500px) {
     .section::before {
         background-image:linear-gradient(rgba(255, 255, 255, 0.5), rgba(255, 255, 255, 0.5)), url(images/background/4\ phone.jpg);
-        
     }
 
     .title {
         font-size: 2rem;
+    }
+
+    .flex-row svg {
+        width: 55px;
     }
 
     .form__item {
