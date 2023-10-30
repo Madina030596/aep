@@ -112,6 +112,7 @@ li:last-child {
     /* background-color:#f2e8dc ; */
     background-color: #f2eade;
     box-shadow: 1px 1px 5px 1px rgba(0, 0, 0, 0.4);
+    -webkit-appearance: none;
     padding: 10px;
 }
 
@@ -315,10 +316,12 @@ li:last-child {
 
 .form__input:focus {
     box-shadow: 0 0 15px rgba(103, 103, 80, 0.4);
+    -webkit-appearance: none;
 }
 
 .form__input._error {
     box-shadow: 0 0 15px rgba(255, 0, 0, 0.5);
+    -webkit-appearance: none;
 }
 
 textarea.form__input {
@@ -342,6 +345,7 @@ textarea.form__input {
     background: #676750;
     color: white;
     box-shadow: 0 0 15px rgba(103, 103, 80, 0.4);
+    -webkit-appearance: none;
 }
 
 @media all and (max-width: 916px) {
